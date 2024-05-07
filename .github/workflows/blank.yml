@@ -1,20 +1,26 @@
-name: Workflow Dispatch Example
+name: Manual Workflow Trigger
 
 on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Person to greet'
+        description: 'Name of the person'
         required: true
-        default: 'John Doe'
-      age:
-        description: 'Age of the person'
+        default: 'Mona the Octocat'
+      home:
+        description: 'Home location'
         required: false
+        default: 'San Francisco, CA'
 
 jobs:
-  greet:
+  manual_trigger:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Run manual trigger
+      run: |
+        echo "Hello, ${{ github.event.inputs.name }}!"
+        echo "Your home is ${{ github.event.inputs.home }}."
