@@ -22,5 +22,5 @@ jobs:
       
     - name: Run manual trigger
       run: |
-        echo "Hello, ${{ github.event.inputs.name }}!"
+        echo "Hola, ${{ github.event.inputs.name }}!"
         echo "Your home is ${{ github.event.inputs.home }}."
